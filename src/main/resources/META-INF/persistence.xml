@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<persistence xmlns="https://jakarta.ee/xml/ns/persistence"
+             xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+             xsi:schemaLocation="https://jakarta.ee/xml/ns/persistence
+             https://jakarta.ee/xml/ns/persistence/persistence_3_0.xsd"
+             version="3.0">
+
+    <persistence-unit name="educaparatodosPU" transaction-type="RESOURCE_LOCAL">
+
+        <!-- Clases que se guardaran en la base de datos -->
+        <class>cl.ipchile.educaparatodos.model.Usuario</class>
+        <class>cl.ipchile.educaparatodos.model.Curso</class>
+        <class>cl.ipchile.educaparatodos.model.Leccion</class>
+        <class>cl.ipchile.educaparatodos.model.Inscripcion</class>
+
+        <properties>
+
+            <!-- Conexion con MySQL -->
+            <property name="jakarta.persistence.jdbc.driver"
+                      value="com.mysql.cj.jdbc.Driver"/>
+
+            <property name="jakarta.persistence.jdbc.url"
+                      value="jdbc:mysql://localhost:3306/educaparatodos?useSSL=false&amp;serverTimezone=America/Santiago"/>
+
+            <!-- Hibernate creara o actualizara las tablas usando nuestras clases -->
+            <property name="hibernate.hbm2ddl.auto"
+                      value="update"/>
+
+            <!-- Permite ver las consultas SQL en la terminal -->
+            <property name="hibernate.show_sql"
+                      value="true"/>
+
+            <property name="hibernate.format_sql"
+                      value="true"/>
+
+        </properties>
+
+    </persistence-unit>
+
+</persistence>
