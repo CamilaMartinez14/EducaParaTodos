@@ -21,7 +21,7 @@
                       value="com.mysql.cj.jdbc.Driver"/>
 
             <property name="jakarta.persistence.jdbc.url"
-                      value="jdbc:mysql://localhost:3306/educaparatodos?useSSL=false&amp;serverTimezone=America/Santiago"/>
+                      value="jdbc:mysql://localhost:3306/educaparatodos?useSSL=false&amp;allowPublicKeyRetrieval=true&amp;serverTimezone=America/Santiago"/>
 
             <!-- Hibernate creara o actualizara las tablas usando nuestras clases -->
             <property name="hibernate.hbm2ddl.auto"
