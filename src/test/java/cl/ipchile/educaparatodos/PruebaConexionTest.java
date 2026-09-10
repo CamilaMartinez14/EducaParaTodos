@@ -1,22 +1,27 @@
 package cl.ipchile.educaparatodos;
 
-import cl.ipchile.educaparatodos.util.JPAUtil;
-import jakarta.persistence.EntityManager;
+import cl.ipchile.educaparatodos.dao.CursoDAO;
+import cl.ipchile.educaparatodos.model.Curso;
 import org.junit.Test;
 
 public class PruebaConexionTest {
 
     @Test
-    public void probarConexion() {
+    public void guardarCurso() {
 
-        // Probamos la conexion con la base de datos
-        EntityManager em = JPAUtil
-                .getEntityManagerFactory()
-                .createEntityManager();
+        // Creamos un curso para probar que se guarde en la base de datos
+        Curso curso = new Curso(
+                "Introduccion a la Programacion",
+                "Programacion",
+                "Curso para aprender conceptos basicos de programacion",
+                "Basico"
+        );
 
-        System.out.println("Conexion realizada correctamente");
+        CursoDAO cursoDAO = new CursoDAO();
 
-        em.close();
-        JPAUtil.cerrar();
+        // Guardamos el curso
+        cursoDAO.guardarCurso(curso);
+
+        System.out.println("Curso guardado correctamente");
     }
 }
