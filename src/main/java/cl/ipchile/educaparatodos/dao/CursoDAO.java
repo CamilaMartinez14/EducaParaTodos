@@ -89,4 +89,59 @@ public class CursoDAO {
 
         em.close();
     }
+
+    // Busca cursos activos segun su tema
+    public List<Curso> buscarPorTema(String tema) {
+
+        EntityManager em = JPAUtil
+                .getEntityManagerFactory()
+                .createEntityManager();
+
+        List<Curso> cursos = em.createQuery(
+                "SELECT c FROM Curso c WHERE c.tema = :tema AND c.activo = true",
+                Curso.class
+        )
+        .setParameter("tema", tema)
+        .getResultList();
+
+        em.close();
+
+        return cursos;
+    }
+
+    // Busca cursos activos segun su nivel
+    public List<Curso> buscarPorNivel(String nivel) {
+
+        EntityManager em = JPAUtil
+                .getEntityManagerFactory()
+                .createEntityManager();
+
+        List<Curso> cursos = em.createQuery(
+                "SELECT c FROM Curso c WHERE c.nivel = :nivel AND c.activo = true",
+                Curso.class
+        )
+        .setParameter("nivel", nivel)
+        .getResultList();
+
+        em.close();
+
+        return cursos;
+    }
+
+    // Ordena los cursos activos desde el mas popular
+    public List<Curso> listarPorPopularidad() {
+
+        EntityManager em = JPAUtil
+                .getEntityManagerFactory()
+                .createEntityManager();
+
+        List<Curso> cursos = em.createQuery(
+                "SELECT c FROM Curso c WHERE c.activo = true ORDER BY c.popularidad DESC",
+                Curso.class
+        ).getResultList();
+
+        em.close();
+
+        return cursos;
+    }
 }

@@ -2,26 +2,26 @@ package cl.ipchile.educaparatodos;
 
 import cl.ipchile.educaparatodos.dao.CursoDAO;
 import cl.ipchile.educaparatodos.model.Curso;
+import java.util.List;
 import org.junit.Test;
 
 public class PruebaConexionTest {
 
     @Test
-    public void guardarCurso() {
-
-        // Creamos un curso para probar que se guarde en la base de datos
-        Curso curso = new Curso(
-                "Introduccion a la Programacion",
-                "Programacion",
-                "Curso para aprender conceptos basicos de programacion",
-                "Basico"
-        );
+    public void buscarCursoPorNivel() {
 
         CursoDAO cursoDAO = new CursoDAO();
 
-        // Guardamos el curso
-        cursoDAO.guardarCurso(curso);
+        // Buscamos los cursos que tienen nivel Basico
+        List<Curso> cursos = cursoDAO.buscarPorNivel("Basico");
 
-        System.out.println("Curso guardado correctamente");
+        for (Curso curso : cursos) {
+            System.out.println(
+                    "Curso encontrado: "
+                    + curso.getNombre()
+                    + " - Nivel: "
+                    + curso.getNivel()
+            );
+        }
     }
 }
