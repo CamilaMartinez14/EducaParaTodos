@@ -1,27 +1,23 @@
 package cl.ipchile.educaparatodos;
 
-import cl.ipchile.educaparatodos.dao.CursoDAO;
-import cl.ipchile.educaparatodos.model.Curso;
-import java.util.List;
+import cl.ipchile.educaparatodos.dao.UsuarioDAO;
+import java.time.LocalDate;
 import org.junit.Test;
 
 public class PruebaConexionTest {
 
     @Test
-    public void buscarCursoPorNivel() {
+    public void desactivarUsuariosPorFecha() {
 
-        CursoDAO cursoDAO = new CursoDAO();
+        UsuarioDAO usuarioDAO = new UsuarioDAO();
 
-        // Buscamos los cursos que tienen nivel Basico
-        List<Curso> cursos = cursoDAO.buscarPorNivel("Basico");
+        // Desactivamos usuarios registrados antes del año 2026
+        LocalDate fechaLimite = LocalDate.of(2026, 1, 1);
 
-        for (Curso curso : cursos) {
-            System.out.println(
-                    "Curso encontrado: "
-                    + curso.getNombre()
-                    + " - Nivel: "
-                    + curso.getNivel()
-            );
-        }
+        int cantidad = usuarioDAO.desactivarUsuariosPorFecha(fechaLimite);
+
+        System.out.println(
+                "Usuarios desactivados: " + cantidad
+        );
     }
 }
