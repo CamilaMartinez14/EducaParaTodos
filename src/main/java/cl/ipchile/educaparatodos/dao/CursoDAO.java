@@ -144,4 +144,27 @@ public class CursoDAO {
 
         return cursos;
     }
+
+    // Desactiva varios cursos segun su popularidad
+    public int desactivarCursosPorPopularidad(int limite) {
+
+        EntityManager em = JPAUtil
+                .getEntityManagerFactory()
+                .createEntityManager();
+
+        em.getTransaction().begin();
+
+        int cantidad = em.createQuery(
+                "UPDATE Curso c SET c.activo = false " +
+                "WHERE c.popularidad < :limite AND c.activo = true"
+        )
+        .setParameter("limite", limite)
+        .executeUpdate();
+
+        em.getTransaction().commit();
+
+        em.close();
+
+        return cantidad;
+    }
 }

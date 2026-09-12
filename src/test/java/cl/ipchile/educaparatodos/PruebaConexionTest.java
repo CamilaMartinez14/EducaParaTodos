@@ -1,23 +1,36 @@
 package cl.ipchile.educaparatodos;
 
-import cl.ipchile.educaparatodos.dao.UsuarioDAO;
-import java.time.LocalDate;
+import cl.ipchile.educaparatodos.dao.CursoDAO;
+import cl.ipchile.educaparatodos.dao.LeccionDAO;
+import cl.ipchile.educaparatodos.model.Curso;
+import cl.ipchile.educaparatodos.model.Leccion;
 import org.junit.Test;
 
 public class PruebaConexionTest {
 
     @Test
-    public void desactivarUsuariosPorFecha() {
+    public void guardarLeccion() {
 
-        UsuarioDAO usuarioDAO = new UsuarioDAO();
+        CursoDAO cursoDAO = new CursoDAO();
+        LeccionDAO leccionDAO = new LeccionDAO();
 
-        // Desactivamos usuarios registrados antes del año 2026
-        LocalDate fechaLimite = LocalDate.of(2026, 1, 1);
+        // Buscamos el curso que ya existe
+        Curso curso = cursoDAO.buscarPorId(1L);
 
-        int cantidad = usuarioDAO.desactivarUsuariosPorFecha(fechaLimite);
+        // Creamos una leccion asociada al curso
+        Leccion leccion = new Leccion(
+                "Conceptos basicos de programacion",
+                "En esta leccion se revisan algunos conceptos iniciales de programacion.",
+                curso
+        );
+
+        leccionDAO.guardarLeccion(leccion);
 
         System.out.println(
-                "Usuarios desactivados: " + cantidad
+                "Leccion guardada: "
+                + leccion.getTitulo()
+                + " - Curso: "
+                + curso.getNombre()
         );
     }
 }
