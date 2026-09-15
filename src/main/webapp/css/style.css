@@ -240,3 +240,55 @@ footer {
         align-items: stretch;
     }
 }
+/* Administracion */
+.administracion {
+    padding: 20px 8% 60px;
+}
+
+.administracion h2 {
+    color: #c69cff;
+    margin-bottom: 20px;
+}
+
+.administracion form {
+    background-color: #1d273b;
+    border: 1px solid #38435a;
+    border-radius: 10px;
+    padding: 25px;
+    max-width: 750px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.administracion label {
+    font-weight: bold;
+}
+
+.administracion input,
+.administracion select,
+.administracion textarea {
+    background-color: #101827;
+    color: #ffffff;
+    border: 1px solid #59647a;
+    border-radius: 6px;
+    padding: 10px;
+}
+
+.administracion textarea {
+    resize: vertical;
+}
+
+.administracion button {
+    background-color: #a970ff;
+    color: #ffffff;
+    border: none;
+    border-radius: 6px;
+    padding: 12px 20px;
+    margin-top: 10px;
+    cursor: pointer;
+}
+
+.administracion button:hover {
+    background-color: #8f55e8;
+}

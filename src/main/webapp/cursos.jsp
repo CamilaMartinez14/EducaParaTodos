@@ -43,24 +43,39 @@
         <section class="busqueda-cursos">
             <h2>Buscar cursos</h2>
 
-            <form>
+            <form action="cursos" method="get">
+
                 <label for="tema">Tema</label>
 
                 <input type="text"
                        id="tema"
                        name="tema"
+                       value="${temaBuscado}"
                        placeholder="Ejemplo: Programación">
 
                 <label for="nivel">Nivel</label>
 
                 <select id="nivel" name="nivel">
                     <option value="">Todos</option>
-                    <option value="Basico">Básico</option>
-                    <option value="Intermedio">Intermedio</option>
-                    <option value="Avanzado">Avanzado</option>
+
+                    <option value="Basico"
+                        ${nivelBuscado == 'Basico' ? 'selected' : ''}>
+                        Básico
+                    </option>
+
+                    <option value="Intermedio"
+                        ${nivelBuscado == 'Intermedio' ? 'selected' : ''}>
+                        Intermedio
+                    </option>
+
+                    <option value="Avanzado"
+                        ${nivelBuscado == 'Avanzado' ? 'selected' : ''}>
+                        Avanzado
+                    </option>
                 </select>
 
                 <button type="submit">Buscar</button>
+
             </form>
         </section>
 
@@ -91,6 +106,11 @@
                     </article>
 
                 </c:forEach>
+
+                <!-- Mensaje cuando la busqueda no encuentra cursos -->
+                <c:if test="${empty cursos}">
+                    <p>No se encontraron cursos con la búsqueda realizada.</p>
+                </c:if>
 
             </div>
         </section>
