@@ -23,7 +23,7 @@
             <a href="index.jsp">Inicio</a>
             <a href="cursos">Cursos</a>
             <a href="mis-cursos">Mis Cursos</a>
-            <a href="perfil.jsp">Perfil</a>
+            <a href="perfil">Perfil</a>
             <a href="contacto.jsp">Contacto</a>
             <a href="administracion">Administración</a>
         </nav>
