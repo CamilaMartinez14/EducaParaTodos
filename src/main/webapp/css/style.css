@@ -351,3 +351,34 @@ footer {
 .lecciones > p {
     color: #d4d7df;
 }
+
+/* Cursos dentro de Administracion */
+.curso-admin {
+    background-color: #1d273b;
+    border: 1px solid #38435a;
+    border-radius: 10px;
+    padding: 25px;
+    margin-top: 20px;
+    max-width: 750px;
+}
+
+.curso-admin h3 {
+    color: #c69cff;
+    margin-bottom: 20px;
+}
+
+.curso-admin form {
+    max-width: 100%;
+}
+
+.form-desactivar {
+    margin-top: 12px;
+}
+
+.form-desactivar button {
+    background-color: #6f4ca5;
+}
+
+.form-desactivar button:hover {
+    background-color: #5d3d8e;
+}

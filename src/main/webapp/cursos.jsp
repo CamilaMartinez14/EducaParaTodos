@@ -25,7 +25,7 @@
             <a href="mis-cursos.jsp">Mis Cursos</a>
             <a href="perfil.jsp">Perfil</a>
             <a href="contacto.jsp">Contacto</a>
-            <a href="administracion.jsp">Administración</a>
+            <a href="administracion">Administración</a>
         </nav>
     </header>
 
