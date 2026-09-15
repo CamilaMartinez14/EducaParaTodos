@@ -43,4 +43,26 @@ public class InscripcionDAO {
 
         return cursos;
     }
+
+    // Revisa si el usuario ya esta inscrito en un curso
+    public boolean existeInscripcion(Long usuarioId, Long cursoId) {
+
+        EntityManager em = JPAUtil
+                .getEntityManagerFactory()
+                .createEntityManager();
+
+        Long cantidad = em.createQuery(
+                "SELECT COUNT(i) FROM Inscripcion i " +
+                "WHERE i.usuario.id = :usuarioId " +
+                "AND i.curso.id = :cursoId",
+                Long.class
+        )
+        .setParameter("usuarioId", usuarioId)
+        .setParameter("cursoId", cursoId)
+        .getSingleResult();
+
+        em.close();
+
+        return cantidad > 0;
+    }
 }

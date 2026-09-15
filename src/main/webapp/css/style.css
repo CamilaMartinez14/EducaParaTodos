@@ -382,3 +382,21 @@ footer {
 .form-desactivar button:hover {
     background-color: #5d3d8e;
 }
+
+/* Boton para inscribirse */
+.detalle-curso form {
+    margin-top: 20px;
+}
+
+.detalle-curso button {
+    background-color: #a970ff;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    padding: 12px 22px;
+    cursor: pointer;
+}
+
+.detalle-curso button:hover {
+    background-color: #8f55e8;
+}
