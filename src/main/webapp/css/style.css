@@ -292,3 +292,62 @@ footer {
 .administracion button:hover {
     background-color: #8f55e8;
 }
+
+/* Detalle del curso */
+.detalle-curso {
+    padding: 55px 8% 35px;
+}
+
+.detalle-curso h2 {
+    color: #c69cff;
+    font-size: 36px;
+    margin-top: 20px;
+    margin-bottom: 15px;
+}
+
+.detalle-curso > p {
+    color: #d4d7df;
+    max-width: 750px;
+    margin-bottom: 20px;
+}
+
+.volver {
+    color: #b98cff;
+    text-decoration: none;
+}
+
+.volver:hover {
+    text-decoration: underline;
+}
+
+.datos-curso {
+    background-color: #1d273b;
+    border: 1px solid #38435a;
+    border-radius: 10px;
+    padding: 20px;
+    max-width: 750px;
+}
+
+.datos-curso p {
+    margin-bottom: 5px;
+}
+
+/* Lecciones */
+.lecciones {
+    background-color: #141d2e;
+    padding: 45px 8% 60px;
+}
+
+.lecciones h2 {
+    color: #c69cff;
+    margin-bottom: 20px;
+}
+
+.lecciones article {
+    max-width: 750px;
+    margin-bottom: 15px;
+}
+
+.lecciones > p {
+    color: #d4d7df;
+}
