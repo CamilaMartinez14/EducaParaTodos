@@ -1,0 +1,242 @@
+/* Estilos generales de la pagina */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: #101827;
+    color: #f2f2f2;
+    line-height: 1.6;
+}
+
+/* Encabezado */
+header {
+    background-color: #182033;
+    padding: 20px 8%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+header h1 {
+    color: #b98cff;
+    font-size: 28px;
+}
+
+nav a {
+    color: #f2f2f2;
+    text-decoration: none;
+    margin-left: 20px;
+}
+
+nav a:hover {
+    color: #b98cff;
+}
+
+/* Pagina de inicio */
+#inicio {
+    padding: 80px 8%;
+    min-height: 400px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+#inicio h2 {
+    font-size: 45px;
+    max-width: 650px;
+    color: #c69cff;
+    margin-bottom: 20px;
+}
+
+#inicio p {
+    max-width: 650px;
+    margin-bottom: 15px;
+    color: #d4d7df;
+}
+
+#inicio a {
+    background-color: #a970ff;
+    color: #ffffff;
+    text-decoration: none;
+    padding: 12px 25px;
+    border-radius: 8px;
+    width: fit-content;
+    margin-top: 15px;
+}
+
+#inicio a:hover {
+    background-color: #8f55e8;
+}
+
+/* Informacion de la plataforma */
+.informacion {
+    background-color: #141d2e;
+    padding: 60px 8%;
+}
+
+.informacion h2 {
+    color: #c69cff;
+    margin-bottom: 15px;
+}
+
+.informacion p {
+    max-width: 850px;
+    color: #d4d7df;
+}
+
+/* Titulo de las paginas */
+.titulo-pagina {
+    padding: 55px 8% 30px;
+}
+
+.titulo-pagina h2 {
+    color: #c69cff;
+    font-size: 36px;
+    margin-bottom: 10px;
+}
+
+.titulo-pagina p {
+    color: #d4d7df;
+    max-width: 700px;
+}
+
+/* Busqueda de cursos */
+.busqueda-cursos {
+    padding: 25px 8% 45px;
+}
+
+.busqueda-cursos h2 {
+    margin-bottom: 20px;
+}
+
+.busqueda-cursos form {
+    background-color: #1d273b;
+    padding: 25px;
+    border: 1px solid #38435a;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.busqueda-cursos label {
+    font-weight: bold;
+}
+
+.busqueda-cursos input,
+.busqueda-cursos select {
+    background-color: #101827;
+    color: #ffffff;
+    border: 1px solid #59647a;
+    border-radius: 6px;
+    padding: 10px;
+}
+
+.busqueda-cursos input {
+    flex: 1;
+}
+
+.busqueda-cursos button {
+    background-color: #a970ff;
+    color: #ffffff;
+    border: none;
+    border-radius: 6px;
+    padding: 11px 22px;
+    cursor: pointer;
+}
+
+.busqueda-cursos button:hover {
+    background-color: #8f55e8;
+}
+
+/* Lista de cursos */
+#cursos {
+    background-color: #141d2e;
+    padding: 60px 8%;
+}
+
+#cursos h2 {
+    font-size: 32px;
+    margin-bottom: 25px;
+}
+
+#cursos > div {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+}
+
+/* Tarjetas de los cursos */
+article {
+    background-color: #1d273b;
+    padding: 25px;
+    border: 1px solid #38435a;
+    border-radius: 10px;
+}
+
+article h3 {
+    color: #c69cff;
+    margin-bottom: 10px;
+}
+
+article p {
+    color: #d4d7df;
+    margin-bottom: 10px;
+}
+
+article a {
+    display: inline-block;
+    background-color: #a970ff;
+    color: #ffffff;
+    text-decoration: none;
+    padding: 8px 18px;
+    border-radius: 6px;
+    margin-top: 10px;
+}
+
+article a:hover {
+    background-color: #8f55e8;
+}
+
+/* Pie de pagina */
+footer {
+    background-color: #0c1320;
+    padding: 30px 8%;
+    text-align: center;
+    color: #aeb5c2;
+}
+
+/* Adaptacion para pantallas pequeñas */
+@media (max-width: 768px) {
+
+    header {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    nav {
+        margin-top: 15px;
+    }
+
+    nav a {
+        display: inline-block;
+        margin: 5px 10px 5px 0;
+    }
+
+    #inicio h2 {
+        font-size: 35px;
+    }
+
+    #cursos > div {
+        grid-template-columns: 1fr;
+    }
+
+    .busqueda-cursos form {
+        flex-direction: column;
+        align-items: stretch;
+    }
+}
