@@ -7,9 +7,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
     <title>EducaParaTodos | Administración</title>
-
     <link rel="stylesheet" href="css/style.css">
 </head>
 
@@ -28,169 +26,233 @@
     </nav>
 </header>
 
-
 <main>
 
     <!-- Presentacion de Administracion -->
     <section class="titulo-pagina">
-
         <h2>Administración</h2>
-
         <p>
             Desde esta sección se pueden registrar y administrar
             los cursos y usuarios de EducaParaTodos.
         </p>
-
     </section>
 
+    <div class="admin-nuevo">
 
-    <!-- AGREGAR CURSO -->
-    <section class="administracion">
+        <!-- AGREGAR CURSO -->
+        <section class="admin-panel">
+            <h2>Agregar curso</h2>
+            <p>Completa los datos para registrar un nuevo curso.</p>
 
-        <h2>Agregar curso</h2>
+            <form action="administracion" method="post">
 
-        <form action="administracion" method="post">
+                <input type="hidden" name="accion" value="guardar">
 
-            <input type="hidden"
-                   name="accion"
-                   value="guardar">
-
-            <label for="nombre">Nombre del curso</label>
-
-            <input type="text"
-                   id="nombre"
-                   name="nombre"
-                   required>
-
-            <label for="tema">Tema</label>
-
-            <input type="text"
-                   id="tema"
-                   name="tema"
-                   required>
-
-            <label for="nivel">Nivel</label>
-
-            <select id="nivel"
-                    name="nivel"
+                <label for="nombre">Nombre del curso</label>
+                <input
+                    type="text"
+                    id="nombre"
+                    name="nombre"
+                    placeholder="Ejemplo: Programación Web"
                     required>
 
-                <option value="">Seleccionar</option>
-                <option value="Basico">Básico</option>
-                <option value="Intermedio">Intermedio</option>
-                <option value="Avanzado">Avanzado</option>
+                <div class="admin-fila">
+                    <div>
+                        <label for="tema">Tema</label>
+                        <input
+                            type="text"
+                            id="tema"
+                            name="tema"
+                            placeholder="Ejemplo: Programación"
+                            required>
+                    </div>
 
-            </select>
+                    <div>
+                        <label for="nivel">Nivel</label>
+                        <select id="nivel" name="nivel" required>
+                            <option value="">Seleccionar</option>
+                            <option value="Basico">Básico</option>
+                            <option value="Intermedio">Intermedio</option>
+                            <option value="Avanzado">Avanzado</option>
+                        </select>
+                    </div>
+                </div>
 
-            <label for="descripcion">Descripción</label>
+                <label for="descripcion">Descripción</label>
+                <textarea
+                    id="descripcion"
+                    name="descripcion"
+                    rows="3"
+                    placeholder="Escribe una descripción del curso..."
+                    required></textarea>
 
-            <textarea id="descripcion"
-                      name="descripcion"
-                      rows="4"
-                      required></textarea>
+                <button type="submit">Guardar curso</button>
 
-            <button type="submit">
-                Guardar curso
-            </button>
+            </form>
+        </section>
 
-        </form>
+        <!-- AGREGAR USUARIO -->
+        <section class="admin-panel">
+            <h2>Agregar usuario</h2>
+            <p>Registra un nuevo usuario en la plataforma.</p>
 
-    </section>
+            <form action="administracion" method="post">
+
+                <input
+                    type="hidden"
+                    name="accion"
+                    value="guardarUsuario">
+
+                <label for="nombreUsuario">Nombre</label>
+                <input
+                    type="text"
+                    id="nombreUsuario"
+                    name="nombreUsuario"
+                    placeholder="Ejemplo: Camila Martinez"
+                    required>
+
+                <label for="correoUsuario">Correo</label>
+                <input
+                    type="email"
+                    id="correoUsuario"
+                    name="correoUsuario"
+                    placeholder="Ejemplo: correo@ejemplo.cl"
+                    required>
+
+                <button type="submit">Guardar usuario</button>
+
+            </form>
+        </section>
+
+    </div>
 
 
     <!-- CURSOS REGISTRADOS -->
-    <section class="administracion">
+    <section class="admin-listado">
 
-        <h2>Cursos registrados</h2>
+        <div class="admin-titulo-listado">
+            <h2>Cursos registrados</h2>
+            <p>
+                Aquí puedes revisar y modificar la información
+                de los cursos activos.
+            </p>
+        </div>
 
-        <c:forEach var="curso" items="${cursos}">
+        <div class="admin-tarjetas">
 
-            <article class="curso-admin">
+            <c:forEach var="curso" items="${cursos}">
 
-                <h3>${curso.nombre}</h3>
+                <article class="admin-tarjeta">
 
-                <!-- Editar curso -->
-                <form action="administracion" method="post">
+                    <h3>${curso.nombre}</h3>
 
-                    <input type="hidden"
-                           name="accion"
-                           value="editar">
+                    <div class="admin-resumen">
+                        <p>
+                            <strong>Tema:</strong> ${curso.tema}
+                        </p>
 
-                    <input type="hidden"
-                           name="id"
-                           value="${curso.id}">
+                        <p>
+                            <strong>Nivel:</strong> ${curso.nivel}
+                        </p>
 
-                    <label>Nombre</label>
+                        <p>
+                            <strong>Descripción:</strong>
+                            ${curso.descripcion}
+                        </p>
+                    </div>
 
-                    <input type="text"
-                           name="nombre"
-                           value="${curso.nombre}"
-                           required>
+                    <!-- El formulario se puede abrir cuando se necesite editar -->
+                    <details class="admin-editar">
 
-                    <label>Tema</label>
+                        <summary>Editar</summary>
 
-                    <input type="text"
-                           name="tema"
-                           value="${curso.tema}"
-                           required>
+                        <form action="administracion" method="post">
 
-                    <label>Nivel</label>
+                            <input
+                                type="hidden"
+                                name="accion"
+                                value="editar">
 
-                    <select name="nivel" required>
+                            <input
+                                type="hidden"
+                                name="id"
+                                value="${curso.id}">
 
-                        <option value="Basico"
-                            ${curso.nivel == 'Basico' ? 'selected' : ''}>
-                            Básico
-                        </option>
+                            <label>Nombre</label>
+                            <input
+                                type="text"
+                                name="nombre"
+                                value="${curso.nombre}"
+                                required>
 
-                        <option value="Intermedio"
-                            ${curso.nivel == 'Intermedio' ? 'selected' : ''}>
-                            Intermedio
-                        </option>
+                            <label>Tema</label>
+                            <input
+                                type="text"
+                                name="tema"
+                                value="${curso.tema}"
+                                required>
 
-                        <option value="Avanzado"
-                            ${curso.nivel == 'Avanzado' ? 'selected' : ''}>
-                            Avanzado
-                        </option>
+                            <label>Nivel</label>
+                            <select name="nivel" required>
 
-                    </select>
+                                <option value="Basico"
+                                    ${curso.nivel == 'Basico' ? 'selected' : ''}>
+                                    Básico
+                                </option>
 
-                    <label>Descripción</label>
+                                <option value="Intermedio"
+                                    ${curso.nivel == 'Intermedio' ? 'selected' : ''}>
+                                    Intermedio
+                                </option>
 
-                    <textarea name="descripcion"
-                              rows="3"
-                              required>${curso.descripcion}</textarea>
+                                <option value="Avanzado"
+                                    ${curso.nivel == 'Avanzado' ? 'selected' : ''}>
+                                    Avanzado
+                                </option>
 
-                    <button type="submit">
-                        Guardar cambios
-                    </button>
+                            </select>
 
-                </form>
+                            <label>Descripción</label>
+                            <textarea
+                                name="descripcion"
+                                rows="3"
+                                required>${curso.descripcion}</textarea>
 
+                            <button type="submit">
+                                Guardar cambios
+                            </button>
 
-                <!-- Desactivar curso -->
-                <form action="administracion"
-                      method="post"
-                      class="form-desactivar">
+                        </form>
 
-                    <input type="hidden"
-                           name="accion"
-                           value="desactivar">
+                    </details>
 
-                    <input type="hidden"
-                           name="id"
-                           value="${curso.id}">
+                    <!-- Desactivacion logica del curso -->
+                    <form
+                        action="administracion"
+                        method="post"
+                        class="admin-desactivar">
 
-                    <button type="submit">
-                        Desactivar curso
-                    </button>
+                        <input
+                            type="hidden"
+                            name="accion"
+                            value="desactivar">
 
-                </form>
+                        <input
+                            type="hidden"
+                            name="id"
+                            value="${curso.id}">
 
-            </article>
+                        <button type="submit">
+                            Desactivar curso
+                        </button>
 
-        </c:forEach>
+                    </form>
 
+                </article>
+
+            </c:forEach>
+
+        </div>
 
         <c:if test="${empty cursos}">
             <p>No hay cursos activos para administrar.</p>
@@ -199,152 +261,115 @@
     </section>
 
 
-    <!-- AGREGAR USUARIO -->
-    <section class="administracion">
-
-        <h2>Agregar usuario</h2>
-
-        <p>
-            Desde aquí se puede registrar un nuevo usuario
-            en la plataforma.
-        </p>
-
-        <form action="administracion" method="post">
-
-            <input type="hidden"
-                   name="accion"
-                   value="guardarUsuario">
-
-            <label for="nombreUsuario">
-                Nombre
-            </label>
-
-            <input type="text"
-                   id="nombreUsuario"
-                   name="nombreUsuario"
-                   required>
-
-            <label for="correoUsuario">
-                Correo
-            </label>
-
-            <input type="email"
-                   id="correoUsuario"
-                   name="correoUsuario"
-                   required>
-
-            <button type="submit">
-                Guardar usuario
-            </button>
-
-        </form>
-
-    </section>
-
-
     <!-- USUARIOS REGISTRADOS -->
-    <section class="administracion">
+    <section class="admin-listado">
 
-        <h2>Usuarios registrados</h2>
+        <div class="admin-titulo-listado">
+            <h2>Usuarios registrados</h2>
+            <p>
+                Aquí se pueden revisar y modificar los usuarios
+                que se encuentran activos.
+            </p>
+        </div>
 
-        <p>
-            Aquí se pueden revisar y modificar los usuarios
-            que se encuentran activos.
-        </p>
+        <div class="admin-tarjetas">
 
+            <c:forEach var="usuario" items="${usuarios}">
 
-        <c:forEach var="usuario" items="${usuarios}">
+                <article class="admin-tarjeta">
 
-            <article class="curso-admin">
+                    <h3>${usuario.nombre}</h3>
 
-                <h3>${usuario.nombre}</h3>
+                    <div class="admin-resumen">
+                        <p>
+                            <strong>Correo:</strong> ${usuario.correo}
+                        </p>
 
-                <!-- Editar usuario -->
-                <form action="administracion" method="post">
+                        <p>
+                            <strong>Fecha de registro:</strong>
+                            ${usuario.fechaRegistro}
+                        </p>
+                    </div>
 
-                    <input type="hidden"
-                           name="accion"
-                           value="editarUsuario">
+                    <!-- Edicion del usuario -->
+                    <details class="admin-editar">
 
-                    <input type="hidden"
-                           name="usuarioId"
-                           value="${usuario.id}">
+                        <summary>Editar</summary>
 
-                    <label>Nombre</label>
+                        <form action="administracion" method="post">
 
-                    <input type="text"
-                           name="nombreUsuario"
-                           value="${usuario.nombre}"
-                           required>
+                            <input
+                                type="hidden"
+                                name="accion"
+                                value="editarUsuario">
 
-                    <label>Correo</label>
+                            <input
+                                type="hidden"
+                                name="usuarioId"
+                                value="${usuario.id}">
 
-                    <input type="email"
-                           name="correoUsuario"
-                           value="${usuario.correo}"
-                           required>
+                            <label>Nombre</label>
+                            <input
+                                type="text"
+                                name="nombreUsuario"
+                                value="${usuario.nombre}"
+                                required>
 
-                    <p>
-                        <strong>Fecha de registro:</strong>
-                        ${usuario.fechaRegistro}
-                    </p>
+                            <label>Correo</label>
+                            <input
+                                type="email"
+                                name="correoUsuario"
+                                value="${usuario.correo}"
+                                required>
 
-                    <button type="submit">
-                        Guardar cambios
-                    </button>
+                            <button type="submit">
+                                Guardar cambios
+                            </button>
 
-                </form>
+                        </form>
 
+                    </details>
 
-                <!-- Se desactiva pero no se elimina de la BD -->
-                <form action="administracion"
-                      method="post"
-                      class="form-desactivar">
+                    <!-- Desactivacion logica del usuario -->
+                    <form
+                        action="administracion"
+                        method="post"
+                        class="admin-desactivar">
 
-                    <input type="hidden"
-                           name="accion"
-                           value="desactivarUsuario">
+                        <input
+                            type="hidden"
+                            name="accion"
+                            value="desactivarUsuario">
 
-                    <input type="hidden"
-                           name="usuarioId"
-                           value="${usuario.id}">
+                        <input
+                            type="hidden"
+                            name="usuarioId"
+                            value="${usuario.id}">
 
-                    <button type="submit">
-                        Desactivar usuario
-                    </button>
+                        <button type="submit">
+                            Desactivar usuario
+                        </button>
 
-                </form>
+                    </form>
 
-            </article>
+                </article>
 
-        </c:forEach>
+            </c:forEach>
 
+        </div>
 
         <c:if test="${empty usuarios}">
-
-            <p>
-                No hay usuarios activos para administrar.
-            </p>
-
+            <p>No hay usuarios activos para administrar.</p>
         </c:if>
 
     </section>
 
 </main>
 
-
 <footer>
-
     <p>EducaParaTodos</p>
-
-    <p>
-        Plataforma educativa gratuita.
-    </p>
-
-    <p>
-        © 2026 EducaParaTodos
-    </p>
-
+    <p>Plataforma educativa gratuita.</p>
+    <p>© 2026 EducaParaTodos</p>
 </footer>
 
 </body>

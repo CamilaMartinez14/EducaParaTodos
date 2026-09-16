@@ -25,9 +25,10 @@ public class CursoServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 
-        // Obtengo los datos ingresados en la busqueda
+        // Obtengo los datos utilizados para buscar los cursos
         String tema = request.getParameter("tema");
         String nivel = request.getParameter("nivel");
+        String orden = request.getParameter("orden");
 
         List<Curso> cursos;
 
@@ -41,6 +42,11 @@ public class CursoServlet extends HttpServlet {
 
             cursos = cursoDAO.buscarPorNivel(nivel);
 
+        // Si se selecciona popularidad los ordeno desde el mas popular
+        } else if ("popularidad".equals(orden)) {
+
+            cursos = cursoDAO.listarPorPopularidad();
+
         // Si no se selecciona nada muestro todos los cursos activos
         } else {
 
@@ -53,6 +59,7 @@ public class CursoServlet extends HttpServlet {
         // Mantengo los valores utilizados en la busqueda
         request.setAttribute("temaBuscado", tema);
         request.setAttribute("nivelBuscado", nivel);
+        request.setAttribute("ordenSeleccionado", orden);
 
         // Muestro la pagina de cursos
         request.getRequestDispatcher("/cursos.jsp").forward(request, response);

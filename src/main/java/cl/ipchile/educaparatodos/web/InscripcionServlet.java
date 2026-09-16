@@ -56,6 +56,12 @@ public class InscripcionServlet extends HttpServlet {
                         new Inscripcion(usuario, curso);
 
                 inscripcionDAO.guardarInscripcion(inscripcion);
+
+                // Aumento la popularidad cuando se realiza una nueva inscripcion
+                curso.setPopularidad(curso.getPopularidad() + 1);
+
+                // Guardo el nuevo valor del curso
+                cursoDAO.editarCurso(curso);
             }
         }
 

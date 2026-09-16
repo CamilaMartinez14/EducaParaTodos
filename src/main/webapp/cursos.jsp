@@ -7,9 +7,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
     <title>EducaParaTodos | Cursos</title>
-
     <link rel="stylesheet" href="css/style.css">
 </head>
 
@@ -33,20 +31,16 @@
 
         <!-- Presentacion de la pagina de cursos -->
         <section class="titulo-pagina">
-
             <h2>Cursos disponibles</h2>
 
             <p>
                 Revisa los cursos de EducaParaTodos y encuentra una alternativa
                 según el tema o nivel que quieras aprender.
             </p>
-
         </section>
 
-
-        <!-- Busqueda de cursos -->
+        <!-- Busqueda y orden de los cursos -->
         <section class="busqueda-cursos">
-
             <h2>Buscar cursos</h2>
 
             <form action="cursos" method="get">
@@ -63,7 +57,6 @@
                 <label for="nivel">Nivel</label>
 
                 <select id="nivel" name="nivel">
-
                     <option value="">Todos</option>
 
                     <option value="Basico"
@@ -80,19 +73,27 @@
                         ${nivelBuscado == 'Avanzado' ? 'selected' : ''}>
                         Avanzado
                     </option>
+                </select>
 
+                <!-- Permite ordenar los cursos utilizando la consulta JPQL -->
+                <label for="orden">Ordenar por</label>
+
+                <select id="orden" name="orden">
+                    <option value="">Orden normal</option>
+
+                    <option value="popularidad"
+                        ${ordenSeleccionado == 'popularidad' ? 'selected' : ''}>
+                        Popularidad
+                    </option>
                 </select>
 
                 <button type="submit">Buscar</button>
 
             </form>
-
         </section>
-
 
         <!-- Cursos obtenidos desde la base de datos -->
         <section id="cursos">
-
             <h2>Nuestros cursos</h2>
 
             <div>
@@ -115,6 +116,11 @@
                             <strong>Nivel:</strong> ${curso.nivel}
                         </p>
 
+                        <!-- La popularidad representa las inscripciones del curso -->
+                        <p>
+                            <strong>Inscripciones:</strong> ${curso.popularidad}
+                        </p>
+
                         <!-- Envia el id del curso seleccionado -->
                         <a href="curso-detalle?id=${curso.id}">
                             Ver curso
@@ -124,32 +130,24 @@
 
                 </c:forEach>
 
-
                 <!-- Mensaje cuando la busqueda no encuentra cursos -->
                 <c:if test="${empty cursos}">
-
                     <p>
                         No se encontraron cursos con la búsqueda realizada.
                     </p>
-
                 </c:if>
 
             </div>
-
         </section>
 
     </main>
 
-
     <!-- Pie de pagina -->
     <footer>
-
         <p>EducaParaTodos</p>
         <p>Plataforma educativa gratuita.</p>
         <p>© 2026 EducaParaTodos</p>
-
     </footer>
 
 </body>
-
 </html>
